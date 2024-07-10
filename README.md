@@ -1,1 +1,3 @@
 # myBookshop
+
+C++ learning project
