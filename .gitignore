@@ -1,0 +1,6 @@
+bookshop
+*~
+#*#
+*.log
+*.vgcore
+.vscode
