@@ -11,6 +11,7 @@ As in a bookshop you can :
 Try :
 - 'new collection' to create a collection
 - 'list collection' to list every collection
+- 'help' display commands help
 
 
 # How to use

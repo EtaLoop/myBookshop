@@ -51,12 +51,6 @@ void Collection::delBook()
 
 }
 
-void Collection::displayState() const
-{
-    cout << "The collection \'" << m_name << "\' has a total of " <<
-    m_curr_nb_book << " registered books out of " << m_size << " books." << endl;
-}
-
 void Collection::changeName(string name)
 {
     m_name = name;
@@ -67,14 +61,13 @@ void Collection::changeSize(int size)
     m_size = size;
 }
 
-
-string Collection::getName() const
+void Collection::display(ostream &stream) const
 {
-    return m_name;
+    stream << m_name << " : " << m_curr_nb_book << "/" << m_size << " books" << endl;
 }
 
-int Collection::getSize() const
+ostream& operator<<( ostream &stream, Collection const& col)
 {
-    return m_size;
+    col.display(stream) ;
+    return stream;
 }
-

@@ -5,7 +5,7 @@
 ## emacs
 ##
 
-NAME := bookshop
+NAME := mybookshop
 
 SRC :=	$(wildcard includes/*.hpp) \
 		main.cpp \

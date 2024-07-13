@@ -2,6 +2,7 @@
 #define COLLECTION
 
 #include <string>
+#include <ostream>
 
 class Collection
 {
@@ -11,11 +12,9 @@ class Collection
     Collection(std::string name, int size);
     void addBook();
     void delBook();
-    void displayState() const;
     void changeName(std::string name);
     void changeSize(int size);
-    std::string getName() const;
-    int getSize() const;
+    void display(std::ostream &stream) const;
 
     private:
 
@@ -23,5 +22,8 @@ class Collection
     int m_size;
     int m_curr_nb_book;
 };
+
+
+std::ostream& operator<<( std::ostream &stream, Collection const& col);
 
 #endif

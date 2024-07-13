@@ -21,11 +21,13 @@ void newCollection(vector<Collection>& allCollection)
 {
     Collection col;
     string buff("");
+    string name("");
     int size(0);
 
     cout << "Enter the new collection name : ";
     getline(cin, buff);
     col.changeName(buff);
+    name = buff;
     cout << "Enter the new collection size : ";
     getline(cin, buff);
     while (!stringIsNum(buff)) {
@@ -35,6 +37,6 @@ void newCollection(vector<Collection>& allCollection)
     size = stoi(buff);
     col.changeSize(size);
     allCollection.push_back(col);
-    cout << endl << "You successfully created a new collection of " << col.getSize()
-    << " books, named \'" << col.getName() << "\'." << endl << endl;
+    cout << endl << "You successfully created a new collection of " << size
+    << " books, named \'" << name << "\'." << endl << endl;
 }
