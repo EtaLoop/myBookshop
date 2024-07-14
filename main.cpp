@@ -4,24 +4,19 @@
 #include <cstring>
 #include <vector>
 
-#include "includes/bookshop.hpp"
+#include "includes/Collection.hpp"
+#include "includes/Format.hpp"
+
 
 using namespace std;
 
-
-string formatBuffer(string instruction)
-{
-    auto end = remove(instruction.begin(), instruction.end(), ' ');
-
-    instruction.erase(end, instruction.end());
-    return instruction;
-}
 
 void displayBookshopHelp()
 {
     cout << "List of commands :" << endl;
     cout << "\t- new collection : create a new collection. Name and size are mandatory." << endl;
     cout << "\t- list collection : list all the created collection." << endl;
+    cout << "\t- new book : add a new book to bookshop." << endl;
     cout << "\t- exit : exit the bookshop." << endl;
     cout << endl;
 }
@@ -33,13 +28,14 @@ void displayProgramHelp()
     cout << "DESCRIPTION :" << endl;
     cout << "\t- new collection : create a new collection. Name and size are mandatory." << endl;
     cout << "\t- list collection : list all the created collection." << endl;
+    cout << "\t- new book : add a new book to bookshop." << endl;
     cout << "\t- exit : exit the bookshop." << endl;
     cout << "\t- help : display help." << endl;
 }
 
-void instructionHandler(string instrution, vector<Collection>& allCollection)
+void instructionHandler(string instrution, vector<Collection>& allCollection, Bookshop& bs)
 {
-    if (instrution == "newcollection" or instrution == "new") {
+    if (instrution == "newcollection" or instrution == "nc") {
         newCollection(allCollection);
         return;
     }
@@ -51,6 +47,10 @@ void instructionHandler(string instrution, vector<Collection>& allCollection)
         cout << "The total number of collection is " << allCollection.size() << "." << endl << endl;
         return;
     }
+    if (instrution == "newbook" or instrution == "nb") {
+        bs.newBook();
+        return;
+    }
     if (instrution == "help") {
         displayBookshopHelp();
         return;
@@ -60,6 +60,7 @@ void instructionHandler(string instrution, vector<Collection>& allCollection)
 
 int main(const int argc, const char *argv[])
 {
+    Bookshop bs;
     vector<Collection> allCollection(0);
     string instruction("");
 
@@ -71,8 +72,8 @@ int main(const int argc, const char *argv[])
     do {
         cout << "Enter an intruction : ";
         getline(cin, instruction);
-        instruction = formatBuffer(instruction);
-        instructionHandler(instruction, allCollection);
+        Format::removeSpaces(instruction);
+        instructionHandler(instruction, allCollection, bs);
     } while (instruction != "exit");
     cout << "Thanks for visiting us. Hope you will be back soon !" << endl;
     return 0;

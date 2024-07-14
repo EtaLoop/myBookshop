@@ -2,13 +2,55 @@
 #include <iostream>
 
 #include "../includes/Collection.hpp"
+#include "../includes/Format.hpp"
 
 using namespace std;
 
 
+Bookshop::Bookshop() : m_tot_book(0)
+{
+}
+
+Bookshop::~Bookshop()
+{
+    for (int i = 0; i < m_booksList.size(); i++) {
+        delete m_booksList[i];
+    }
+}
+
+void Bookshop::newBook()
+{
+    string bookName("");
+    string bookDesc("");
+
+    cout << "What is the new book name ? : ";
+    getline(cin, bookName);
+    while (not Format::strIsAlpha(bookName)) {
+        cout << "Invalid name. A book name must contain only letters. Try again : ";
+        getline(cin, bookName);
+    }
+    cout << "Would you like to add a description to it ? (Yes or No) : ";
+    getline(cin, bookDesc);
+    while (bookDesc != "No" and bookDesc != "no" and bookDesc != "N" and bookDesc != "yes" and
+    bookDesc != "Y" and bookDesc != "Yes") {
+        cout << "Wrong answer. Try again : ";
+        getline(cin, bookDesc);
+    }
+    if (bookDesc == "No" or bookDesc == "no" or bookDesc == "N") {
+        m_booksList.push_back(new Book(bookName));
+    } else {
+        cout << "Enter description : ";
+        getline(cin, bookDesc);
+        m_booksList.push_back(new Book(bookName, bookDesc));
+    }
+    cout << endl << "You successfully added \'" << bookName << "\'." << endl << endl;
+    m_tot_book += 1;
+}
+
+
+
 Collection::Collection() : m_name("Default Collection"), m_size(10), m_curr_nb_book(0)
 {
-
 }
 
 Collection::Collection(string name, int size) : m_name("Default Collection"),
@@ -16,34 +58,6 @@ m_size(10), m_curr_nb_book(0)
 {
     m_name = name;
     m_size = size;
-}
-
-static int stringIsAlpha(string str)
-{
-    for (int i = 0; i < str.size(); i++) {
-        if (((str[i] < 'A') or (str[i] > 'Z' and str[i] < 'a') or (str[i] > 'z')) and str[i] != ' ') {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-void Collection::addBook()
-{
-    string bookName("");
-
-    if (m_curr_nb_book >= m_size) {
-        cout << "You cannot add an other book, your Collection is full." << endl;
-        return;
-    }
-    cout << "What is the new book name ?" << endl;
-    getline(cin, bookName);
-    while (!stringIsAlpha(bookName)) {
-        cout << "Invalid name. A book name must contain only letters. Try again :" << endl;
-        getline(cin, bookName);
-    }
-    cout << "You successfully added \'" << bookName << "\'" << endl;
-    m_curr_nb_book += 1;
 }
 
 void Collection::delBook()

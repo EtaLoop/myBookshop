@@ -1,9 +1,8 @@
 #include <iostream>
-#include <algorithm>
 #include <string>
 #include <vector>
 
-#include "../includes/bookshop.hpp"
+#include "../includes/Collection.hpp"
 
 using namespace std;
 
