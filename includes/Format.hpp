@@ -10,6 +10,7 @@ public:
     ~Format();
     static bool strIsAlpha(std::string str);
     static void removeSpaces(std::string& str);
+    static void strToLower(std::string& str);
 };
 
 

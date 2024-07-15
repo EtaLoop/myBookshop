@@ -13,7 +13,11 @@ public:
     ~Bookshop();
 
     void newBook();
-private:
+    void listBookList();
+    void searchBook(std::string to_search);
+
+protected:
+    
     std::vector<Book*> m_booksList;
     int m_tot_book;
 };

@@ -25,8 +25,8 @@ void newCollection(vector<Collection>& allCollection)
 
     cout << "Enter the new collection name : ";
     getline(cin, buff);
-    col.changeName(buff);
     name = buff;
+    col.changeName(buff);
     cout << "Enter the new collection size : ";
     getline(cin, buff);
     while (!stringIsNum(buff)) {

@@ -9,7 +9,14 @@ public:
     Book(std::string name);
     Book(std::string name, std::string description);
     ~Book();
-private:
+    void display(std::ostream &stream) const;
+    bool matchBookName(std::string str);
+    bool matchBookNameNcar(std::string str, int n);
+
+protected:
+
+    friend std::ostream &operator<<(std::ostream &stream, Book const &book);
+
     std::string m_name;
     std::string m_description;
 };

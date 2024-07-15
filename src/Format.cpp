@@ -1,5 +1,7 @@
 #include <string>
+#include <iostream>
 #include <algorithm>
+#include <cctype>
 #include "../includes/Format.hpp"
 
 using namespace std;
@@ -18,7 +20,7 @@ bool Format::strIsAlpha(string str)
         return false;
     }
     for (int i = 0; i < str.size(); i++) {
-        if (((str[i] < 'A') or (str[i] > 'Z' and str[i] < 'a') or (str[i] > 'z')) and str[i] != ' ') {
+        if (not (isalpha(str[i])) and str[i] != ' ') {
             return false;
         }
     }
@@ -30,5 +32,12 @@ void Format::removeSpaces(string& str)
     auto end = remove(str.begin(), str.end(), ' ');
 
     str.erase(end, str.end());
+}
+
+void Format::strToLower(string& str)
+{
+    for (int i = 0; i < str.size(); i++) {
+        str[i] = tolower(str[i]);
+    }
 }
 

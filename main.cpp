@@ -17,6 +17,7 @@ void displayBookshopHelp()
     cout << "\t- new collection : create a new collection. Name and size are mandatory." << endl;
     cout << "\t- list collection : list all the created collection." << endl;
     cout << "\t- new book : add a new book to bookshop." << endl;
+    cout << "\t- search [book name] : search a book." << endl;
     cout << "\t- exit : exit the bookshop." << endl;
     cout << endl;
 }
@@ -29,6 +30,7 @@ void displayProgramHelp()
     cout << "\t- new collection : create a new collection. Name and size are mandatory." << endl;
     cout << "\t- list collection : list all the created collection." << endl;
     cout << "\t- new book : add a new book to bookshop." << endl;
+    cout << "\t- search [book name] : search a book." << endl;
     cout << "\t- exit : exit the bookshop." << endl;
     cout << "\t- help : display help." << endl;
 }
@@ -39,7 +41,7 @@ void instructionHandler(string instrution, vector<Collection>& allCollection, Bo
         newCollection(allCollection);
         return;
     }
-    if (instrution == "listcollection" or instrution == "list") {
+    if (instrution == "listcollection" or instrution == "lc") {
         cout <<  endl << "Collections :" << endl;
         for (int i = 0; i < allCollection.size(); i++) {
             cout << allCollection[i];
@@ -49,6 +51,14 @@ void instructionHandler(string instrution, vector<Collection>& allCollection, Bo
     }
     if (instrution == "newbook" or instrution == "nb") {
         bs.newBook();
+        return;
+    }
+    if (instrution == "listbook" or instrution == "lb") {
+        bs.listBookList();
+        return;
+    }
+    if (strncmp(instrution.c_str(), "search", 6) == 0) {
+        bs.searchBook(instrution.substr(6));
         return;
     }
     if (instrution == "help") {

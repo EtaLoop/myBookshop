@@ -47,17 +47,46 @@ void Bookshop::newBook()
     m_tot_book += 1;
 }
 
+void Bookshop::listBookList()
+{
+    cout << endl << "List of books :" << endl;
+    for (int i = 0; i < m_booksList.size(); i++) {
+        cout << (*m_booksList[i]);       
+    }
+    cout << endl;
+    cout << "Total of " << m_booksList.size() << " books." << endl << endl;
+}
+
+void Bookshop::searchBook(string to_search)
+{
+    int book_found = 0;
+    
+    cout << endl << "To search : " << to_search << endl;
+    Format::strToLower(to_search);
+    for (int i = 0; i < m_booksList.size(); i++) {
+        if (m_booksList[i]->matchBookNameNcar(to_search, to_search.size())) {
+            if (book_found == 0) {
+                cout << "Books found :" << endl;
+            }
+            cout << (*m_booksList[i]);
+            book_found++;
+        }
+    }
+    if (book_found == 0) {
+        cout << "No books founds." << endl << endl;
+    } else {
+        cout << endl;
+    }
+}
+
 
 
 Collection::Collection() : m_name("Default Collection"), m_size(10), m_curr_nb_book(0)
 {
 }
 
-Collection::Collection(string name, int size) : m_name("Default Collection"),
-m_size(10), m_curr_nb_book(0)
+Collection::Collection(string name, int size) : m_name(name), m_size(size), m_curr_nb_book(0)
 {
-    m_name = name;
-    m_size = size;
 }
 
 void Collection::delBook()
